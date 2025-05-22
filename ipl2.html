@@ -1,67 +1,97 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Sports TV</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #111;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e0e0e;
       color: #fff;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
-      background-color: #1e1e1e;
-      padding: 20px 0;
-      font-size: 24px;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to right, #1a1a1a, #333);
+      text-align: center;
+      font-size: 28px;
       font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
     }
 
-    .video-container {
+    .video-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 20px auto;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
+      width: 95%;
+      max-width: 960px;
+      margin: 30px auto;
+      border-radius: 15px;
       overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      background-color: #000;
     }
 
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
+    video {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .live-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 5px 12px;
+      font-size: 14px;
+      border-radius: 5px;
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 1; }
+      to { opacity: 0.6; }
+    }
+
+    .logo-placeholder {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 80px;
+      height: 40px;
+      background: url('your-logo.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.8;
     }
 
     footer {
       padding: 20px;
       font-size: 14px;
-      color: #aaa;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <header>
-    RS Sports TV
-  </header>
 
-  <div class="video-container">
+  <header>RS Sports TV - Live News</header>
+
+  <div class="video-wrapper">
     <video controls autoplay muted>
       <source src="https://archive.org/download/dbc-news-360-p/%E0%A6%AA%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%81%E0%A6%9F%E0%A6%BE%E0%A6%B0%20%E0%A6%AA%E0%A6%A5%E0%A7%87%20%E0%A6%A6%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2_%20%E0%A6%A1%E0%A6%BF%E0%A6%B8%E0%A6%BF%E0%A6%B0%20%E0%A6%95%E0%A6%BE%E0%A6%9B%E0%A7%87%20%E0%A6%97%E0%A6%A3%E0%A6%B8%E0%A7%8D%E0%A6%AC%E0%A6%BE%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%20_%20DBC%20NEWS%28360P%29.mp4" type="video/mp4">
-      আপনার ব্রাউজার ভিডিও চালাতে পারছে না।
+      আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।
     </video>
+    <div class="live-badge">LIVE</div>
+    <div class="logo-placeholder"></div> <!-- এখানে আপনি PNG লোগো বসাতে পারবেন -->
   </div>
 
-  <footer>
-    &copy; 2025 RS Sports TV. সকল অধিকার সংরক্ষিত।
-  </footer>
+  <footer>&copy; 2025 RS Sports TV. সকল অধিকার সংরক্ষিত।</footer>
+
 </body>
 </html>
