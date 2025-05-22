@@ -1,149 +1,115 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Sports TV</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #111;
+      font-family: sans-serif;
+      background-color: #000;
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    }.slider-container {
+  position: relative;
+}
 
-    header {
-      width: 100%;
-      padding: 20px;
-      background: linear-gradient(to right, #1a1a1a, #333);
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-    }
+.video-container {
+  width: 100%;
+  max-height: 450px;
+  box-shadow: 0 0 20px green;
+}
 
-    .video-container {
-      position: relative;
-      width: 95%;
-      max-width: 960px;
-      margin: 30px auto;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 30px rgba(0, 255, 0, 0.5); /* সবুজ শেডো */
-      background: #000;
-    }
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+.slider {
+  height: 200px;
+  background: linear-gradient(to right, #222, #444);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
 
-    .live-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: red;
-      color: white;
-      font-weight: bold;
-      padding: 5px 12px;
-      font-size: 14px;
-      border-radius: 4px;
-      animation: pulse 1s infinite alternate;
-      box-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
-    }
+.running-text {
+  background: #111;
+  color: #0f0;
+  padding: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.running-text span {
+  display: inline-block;
+  animation: scroll 12s linear infinite;
+}
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 
-    @keyframes pulse {
-      0% { opacity: 1; }
-      100% { opacity: 0.6; }
-    }
+.playlist {
+  width: 95%;
+  max-width: 960px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
 
-    .logo {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 80px;
-      height: 40px;
-      background: url('your-logo.png') no-repeat center center;
-      background-size: contain;
-      opacity: 0.85;
-    }
+.playlist-item {
+  background: #111;
+  border: 2px solid #0f0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .playlist {
-      width: 95%;
-      max-width: 960px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-    }
+.playlist-item:hover {
+  transform: scale(1.05);
+}
 
-    .playlist-item {
-      width: 200px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
+.playlist-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
 
-    .playlist-item:hover {
-      transform: scale(1.05);
-    }
+.playlist-item span {
+  display: block;
+  text-align: center;
+  padding: 8px;
+}
 
-    .playlist-item img {
-      width: 100%;
-      border-radius: 10px;
-      border: 2px solid #0f0;
-    }
-
-    .playlist-item span {
-      display: block;
-      text-align: center;
-      margin-top: 5px;
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    footer {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #aaa;
-      text-align: center;
-      padding: 10px;
-    }
   </style>
 </head>
-<body>
-
-  <header>RS Sports TV - Live News</header>
-
-  <div class="video-container">
-    <video id="mainVideo" controls autoplay muted poster="https://i.imgur.com/Cc7zWDE.jpeg">
-      <source src="https://archive.org/download/dbc-news-360-p/%E0%A6%AA%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%81%E0%A6%9F%E0%A6%BE%E0%A6%B0%20%E0%A6%AA%E0%A6%A5%E0%A7%87%20%E0%A6%A6%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2_%20%E0%A6%A1%E0%A6%BF%E0%A6%B8%E0%A6%BF%E0%A6%B0%20%E0%A6%95%E0%A6%BE%E0%A6%9B%E0%A7%87%20%E0%A6%97%E0%A6%A3%E0%A6%B8%E0%A7%8D%E0%A6%AC%E0%A6%BE%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%20_%20DBC%20NEWS%28360P%29.mp4" type="video/mp4">
-      আপনার ব্রাউজার ভিডিও চালাতে পারছে না।
-    </video>
-    <div class="live-badge">LIVE</div>
-    <div class="logo"></div>
-  </div>
-
-  <!-- Playlist Section -->
-  <div class="playlist">
-    <div class="playlist-item" onclick="playVideo('https://archive.org/download/dbc-news-360-p/Video1.mp4', 'https://i.imgur.com/Cc7zWDE.jpeg')">
-      <img src="https://i.imgur.com/Cc7zWDE.jpeg" alt="Video 1">
-      <span>DBC NEWS রিপোর্ট ১</span>
+<body>  <div class="slider-container">
+    <div class="video-container" id="videoContainer">
+      <video id="mainVideo" controls poster="poster1.jpg">
+        <source src="https://archive.org/download/dbc-news-360-p/%E0%A6%AA%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%87%20%E0%A6%B9%E0%A6%BE%E0%A6%81%E0%A6%9F%E0%A6%BE%E0%A6%B0%20%E0%A6%AA%E0%A6%A5%E0%A7%87%20%E0%A6%A6%E0%A7%87%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B2_%20%E0%A6%A1%E0%A6%BF%E0%A6%B8%E0%A6%BF%E0%A6%B0%20%E0%A6%95%E0%A6%BE%E0%A6%9B%E0%A7%87%20%E0%A6%97%E0%A6%A3%E0%A6%B8%E0%A7%8D%E0%A6%AC%E0%A6%BE%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%20_%20DBC%20NEWS%28360P%29.mp4" type="video/mp4">
+        আপনার ব্রাউজার ভিডিও প্লে করতে পারছে না।
+      </video>
     </div>
-    <div class="playlist-item" onclick="playVideo('https://archive.org/download/dbc-news-360-p/Video2.mp4', 'https://i.imgur.com/kKJjVPD.jpeg')">
-      <img src="https://i.imgur.com/kKJjVPD.jpeg" alt="Video 2">
-      <span>DBC NEWS রিপোর্ট ২</span>
+    <div class="slider">RS Sports TV - Live News Slider</div>
+  </div>  <div class="running-text">
+    <span>এই মুহূর্তে সরাসরি সম্প্রচার চলছে... নতুন খবর দেখতে নিচে দেখুন...</span>
+  </div>  <div class="playlist">
+    <div class="playlist-item" onclick="playVideo('video1.mp4', 'poster1.jpg')">
+      <img src="poster1.jpg" alt="Video 1">
+      <span>ভিডিও ১</span>
     </div>
-    <!-- আরও ভিডিও চাইলে এখানে কপি করে এড করুন -->
-  </div>
-
-  <footer>&copy; 2025 RS Sports TV. Powered by Internet Archive</footer>
-
-  <script>
+    <div class="playlist-item" onclick="playVideo('video2.mp4', 'poster2.jpg')">
+      <img src="poster2.jpg" alt="Video 2">
+      <span>ভিডিও ২</span>
+    </div>
+    <div class="playlist-item" onclick="playVideo('video3.mp4', 'poster3.jpg')">
+      <img src="poster3.jpg" alt="Video 3">
+      <span>ভিডিও ৩</span>
+    </div>
+  </div>  <script>
     function playVideo(src, poster) {
       const video = document.getElementById('mainVideo');
       video.src = src;
@@ -151,7 +117,5 @@
       video.load();
       video.play();
     }
-  </script>
-
-</body>
+  </script></body>
 </html>
