@@ -1,582 +1,119 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>CricTon - Watch Movie • Live Cricket And Dramas For Free 💥</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOVIE'S ZonE BD</title>
+  <link rel="icon" type="image/png" href="https://i.imgur.com/Rbsr93b.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
-    body {
-      font-family: 'Comic Neue', cursive, sans-serif;
-    }
-    .slider-image {
-      transition: opacity 1s ease-in-out;
-    }
-    .dot.active {
-      background-color: #dc2626;
-    }
+    /* আপনার সমস্ত CSS কোড এখানে অপরিবর্তিত আছে */
+    .header { position: sticky; top: 0; z-index: 100; background: linear-gradient( to right, #004d00 0%, #004d00 15%, #FF0000 15%, #FF0000 85%, #004d00 85%, #004d00 100%); color: white; padding: 8px 20px; font-size: 18px; font-weight: 700; box-shadow: 0 4px 8px rgba(128, 0, 0, 0.7); text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .menu-btn { position: absolute; left: 15px; background: transparent; border: none; color: white; font-size: 28px; cursor: pointer; user-select: none; padding: 0; line-height: 1; transition: color 0.3s ease; z-index: 111; }
+    .menu-btn:hover { color: #00ffcc; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #eee; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+    .top-fixed { flex-shrink: 0; position: sticky; top: 0; background: #121212; z-index: 100; padding-bottom: 10px; border-bottom: 1px solid #333; }
+    .slider-container, .video-container { width: 100%; max-width: 800px; aspect-ratio: 16/9; margin: 10px auto 0; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 4px 15px rgba(0, 255, 0, 0.4); }
+    .swiper, video { width: 100%; height: 100%; }
+    .swiper-slide { display: flex; align-items: center; justify-content: center; }
+    .swiper-slide img { width: 100%; height: 100%; object-fit: contain; }
+    .hidden { display: none; }
+    .category-tabs-container { max-width: 800px; margin: 15px auto 5px; position: relative; }
+    .category-tabs-scroll { display: flex; gap: 8px; padding: 8px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    .category-tabs-scroll::-webkit-scrollbar { display: none; }
+    .category-tab { flex: 0 0 auto; padding: 10px 20px; background: linear-gradient(145deg, #1e1e1e, #2a2a2a); color: #ddd; border-radius: 8px; font-size: 14px; border: none; cursor: pointer; transition: all 0.3s ease; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.2); white-space: nowrap; }
+    .category-tab:hover { background: linear-gradient(145deg, #2a2a2a, #1e1e1e); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+    .category-tab.active { background: linear-gradient(145deg, #ff5722, #e64a19); color: #fff; box-shadow: 0 4px 15px rgba(255, 87, 34, 0.5); transform: translateY(-2px); }
+    .search-container { max-width: 800px; margin: 10px auto; text-align: center; }
+    #searchInput { width: 90%; max-width: 600px; padding: 12px 20px; border-radius: 25px; border: none; outline: none; font-size: 16px; box-shadow: 0 2px 8px rgba(255,255,255,0.1); background: #222; color: #eee; transition: all 0.3s ease; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>'); background-repeat: no-repeat; background-position: 15px center; background-size: 20px; padding-left: 45px; }
+    #searchInput:focus { box-shadow: 0 2px 12px rgba(255,87,34,0.7); background-color: #2a2a2a; }
+    .scroll-area { flex: 1; overflow-y: auto; padding: 10px 10px 80px; }
+    .content-section { max-width: 800px; margin: auto; }
+    .content-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 5px; }
+    .content-card { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #1e1e1e; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 12px rgba(0, 255, 0, 0.4); padding: 4px; }
+    .content-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); z-index: 10; }
+    .content-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; transition: transform 0.3s ease; }
+    .content-card:hover img { transform: scale(1.1); }
+    .content-title { display: none; }
+    .loading { display: flex; justify-content: center; align-items: center; height: 100px; color: #ff5722; font-size: 18px; }
+    .section-title { text-align: center; margin: 15px 0 10px; font-size: 20px; color: #ff5722; font-weight: 600; }
+    .scroll-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; background: rgba(30,30,30,0.8); border: none; border-radius: 50%; color: #fff; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; opacity: 0.7; transition: opacity 0.3s; }
+    .scroll-btn:hover { opacity: 1; }
+    .scroll-left { left: 5px; }
+    .scroll-right { right: 5px; }
+    .new-release-label { position: absolute; top: 8px; left: 8px; background: linear-gradient(135deg, #ED0000, #FF0D04, #FFFA01, #11B400); color: white; padding: 5px 12px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 2px 8px rgba(0,0,0,0.5); animation: pulse-label 1.5s infinite; }
+    @keyframes pulse-label { 0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); } 50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(255, 87, 34, 0.8); } 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); } }
+    .video-container { position: relative; }
+    .video-loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; display: none; }
+    .video-loader .container { --uib-size: 43px; --uib-color: #ff5722; --uib-speed: 1.3s; --uib-dot-size: calc(var(--uib-size) * 0.24); position: relative; display: flex; align-items: center; justify-content: space-between; height: var(--uib-dot-size); width: var(--uib-size); }
+    .video-loader .dot, .video-loader .container::before, .video-loader .container::after { content: ''; display: block; height: var(--uib-dot-size); width: var(--uib-dot-size); border-radius: 50%; background-color: var(--uib-color); transform: scale(0); transition: background-color 0.3s ease; }
+    .video-loader .container::before { animation: pulse-loader var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.375) infinite; }
+    .video-loader .dot { animation: pulse-loader var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.25) infinite both; }
+    .video-loader .container::after { animation: pulse-loader var(--uib-speed) ease-in-out calc(var(--uib-speed) * -0.125) infinite; }
+    @keyframes pulse-loader { 0%, 100% { transform: scale(0); } 50% { transform: scale(1); } }
+    #videoPlayer.video-buffering { opacity: 0; transition: opacity 0.2s ease-in-out; }
+    #videoOverlay { position: absolute; top: 15px; right: 15px; z-index: 5; color: rgba(255, 255, 255, 0.7); font-size: 16px; font-weight: bold; font-family: 'Segoe UI', sans-serif; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); pointer-events: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
+    #videoOverlay.visible { opacity: 1; }
+    @media (max-width: 600px) { .content-grid { gap: 10px; } .scroll-btn { display: none; } }
   </style>
 </head>
-<body class="bg-[#111] text-white">
-  <!-- Telegram Pop-up (Upgraded Design) -->
-<div id="telegram-popup" style="
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  font-family: 'Poppins', sans-serif;
-  animation: fadeIn 0.4s ease-in-out;
-">
-  <div style="
-    background: linear-gradient(135deg, #ffffff, #f0f4f8);
-    padding: 35px 25px;
-    border-radius: 24px;
-    width: 92%;
-    max-width: 360px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    text-align: center;
-    animation: popUpScale 0.35s ease-in-out;
-    position: relative;
-  ">
-    <div style="font-size: 17px; color: #222; margin-bottom: 25px; font-weight: 500;">
-      আমাদের <strong style="color:#0088cc;">টেলিগ্রাম চ্যানেল</strong>-এ যুক্ত হন সর্বশেষ আপডেট পেতে!
-    </div>
-    <a href="https://t.me/rslivetv" target="_blank" style="
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      color: white;
-      background-color: #0088cc;
-      padding: 10px 22px;
-      border-radius: 50px;
-      box-shadow: 0 5px 15px rgba(0,136,204,0.3);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    " onmouseover="this.style.backgroundColor='#0077b6'" onmouseout="this.style.backgroundColor='#0088cc'">
-      <i class="bi bi-telegram" style="font-size: 20px;"></i> Join Now
-    </a>
-    <button onclick="document.getElementById('telegram-popup').remove()" style="
-      padding: 10px 20px;
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 600;
-      margin-top: 20px;
-      transition: background 0.3s ease;
-    " onmouseover="this.style.background='#e84343'" onmouseout="this.style.background='#ff4d4d'">
-      Close
-    </button>
-  </div>
+<body>
+
+<div class="header">
+    <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+    𝐌𝐎𝐕𝐈𝐄'𝐒 𝐙𝐨𝐧𝐄 𝐁𝐃
 </div>
 
-<!-- Bootstrap Icons CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
-<!-- Custom Animation Styles -->
-<style>
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-@keyframes popUpScale {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-</style>
-</div>
-  <header class="bg-[#1a1a1a] border-b border-red-600">
-    <div class="max-w-5xl mx-auto py-4 flex justify-between items-center px-4">
-      <img alt="Fredflix Logo" class="h-10 object-contain" src="https://i.postimg.cc/cCVbQZxP/3558447-icohome.png" />
-      <div id="clock" class="text-lg font-semibold"></div>
+<div class="top-fixed">
+    <div id="sliderBox" class="slider-container">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://imgur.com/PP0EUG4.jpeg" alt="Banner 1"></div>
+                <div class="swiper-slide"><img src="https://imgur.com/6COcj3K.jpeg" alt="Banner 2"></div>
+                <div class="swiper-slide"><img src="https://imgur.com/b6y8Auu.jpeg" alt="Banner 3"></div>
+                <div class="swiper-slide"><img src="https://imgur.com/N0vWOwm.jpeg" alt="Banner 4"></div>
+                <div class="swiper-slide"><img src="https://imgur.com/kFv5LhH.jpeg" alt="Banner 5"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
     </div>
-  </header>
-
-  <main class="max-w-5xl mx-auto px-4 space-y-10 mt-6">
-
-    <!-- Slider -->
-    <section class="relative overflow-hidden rounded-lg">
-      <div class="relative">
-        <img id="slider" class="w-full slider-image rounded-md" src="https://image.tsports.com/images/mobile_thumbnail/1742534265-IMG_3293.jpeg" />
-      </div>
-      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-        <span class="dot w-3 h-3 rounded-full bg-gray-400"></span>
-        <span class="dot w-3 h-3 rounded-full bg-gray-400"></span>
-        <span class="dot w-3 h-3 rounded-full bg-gray-400"></span>
-      </div>
-    </section>
-
-    <!-- Font Awesome CDN -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
-<!-- Live Events Section -->
-<section class="bg-[#1a1a1a] border border-white rounded-2xl p-6 shadow-2xl space-y-6 max-w-screen-lg mx-auto">
-  <div class="flex justify-center">
-    <button class="flex items-center gap-3 border border-white rounded-full px-6 py-2 text-white text-xl font-bold hover:bg-red-600 transition-all duration-300">
-      <i class="fas fa-broadcast-tower text-red-600 text-2xl animate-pulse"></i>
-      <span class="tracking-wide">Live Sports</span>
-    </button>
-  </div>
-
-  <!-- Fixed 3-column grid -->
-  <div class="grid grid-cols-3 gap-6 place-items-center">
-    <a href="ipl.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="CricTon-ipl.jpeg" alt="PSL Live 03" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="ipl2.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="CricTon-psl.jpeg" alt="PSL Live 01" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="tsports.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVx1AVcLq-J2br7NDvgODQiY4so7bhZ_irsrD4MCtGoAcKfPJehE_v61g&s=10" alt="TSports" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="stars1.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="s2.jpeg" alt="PSL Live 03" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="ptvsports.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="s3.jpeg" alt="PSL Live 01" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="willow.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="s4.jpeg" alt="TSports" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="tencricket.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="s5.jpeg" alt="PSL Live 03" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="astro.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="s6.jpeg" alt="PSL Live 01" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="fancode.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-red-600 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="👐.jpg" alt="TSports" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <!-- চাইলে আরো ইমেজ অ্যাড করতে পারেন -->
-  </div>
-</section>
-    <!-- Font Awesome CDN -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
-<!-- Live TV Section -->
-<section class="bg-[#1a1a1a] border border-white rounded-2xl p-6 shadow-2xl space-y-6 max-w-screen-lg mx-auto mt-10">
-  <div class="flex justify-center">
-    <button class="flex items-center gap-3 border border-white rounded-full px-6 py-2 text-white text-xl font-bold hover:bg-blue-600 transition-all duration-300">
-      <i class="fas fa-tv text-blue-500 text-2xl animate-pulse"></i>
-      <span class="tracking-wide">Live TV</span>
-    </button>
-  </div>
-  
-<!-- 3-column layout -->
-  <div class="grid grid-cols-3 gap-6 place-items-center">
-
-    <a href="starjalsha.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="😆.jpg" alt="TV 2" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="enter10bangla.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="😬.jpg" alt="TV 3" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="btv.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="😍.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="atnbangla.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="👐.jpg" alt="TV 2" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="atnnews.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="👀.jpg" alt="TV 3" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="jamuna.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="🏏.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="somoy.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="🥰.jpg" alt="TV 2" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="news24.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="😥.jpg" alt="TV 3" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="independent.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="👍.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="ekattor.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="👇.jpg" alt="TV 2" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="mytv.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="📑.jpg" alt="TV 3" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="ntv.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="🔥.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="channeli.html" target=" _blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="💥.jpg" alt="TV 2" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="deepto.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="🙄.jpg" alt="TV 3" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="metv.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="💕.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-    <a href="musicmbangla.html" target="_blank" class="hover:scale-110 transform transition-all duration-300">
-      <div class="w-24 h-24 rounded-full border-4 border-blue-500 p-1 bg-white overflow-hidden flex items-center justify-center shadow-md">
-        <img src="😆.jpg" alt="TV 1" class="w-full h-full object-cover rounded-full" />
-      </div>
-    </a>
-  </div>
-</section>
-  <!-- Bangla Movies Section -->
-<section class="space-y-6 px-4 mt-10">
-  <div class="flex justify-center mb-6">
-    <button class="flex items-center border border-yellow-400 bg-yellow-500 text-black rounded-full px-6 py-2 space-x-2 text-xl font-bold shadow-lg hover:bg-yellow-600 transition duration-300">
-      <i class="fas fa-star text-white animate-pulse"></i>
-      <span>Bangla Movies</span>
-    </button>
-  </div>
-
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="font-extrabold text-yellow-400 text-3xl relative after:absolute after:bottom-0 after:left-0 after:w-1/3 after:h-1 after:bg-yellow-500 after:rounded-full">
-      Trending Bangla
-    </h2>
-    <span class="text-sm text-yellow-300 cursor-pointer hover:text-white transition">Explore All</span>
-  </div>
-
-  <div id="bangla-movie-container" class="flex space-x-5 overflow-x-auto pb-6 scrollbar-hide">
-    <!-- JS will generate cards here -->
-  </div>
-</section>
-
-<script>
-  const banglaMovies = [
-    {
-      title: "Surongo",
-      img: "https://i.imgur.com/uS8bO0O.jpg",
-      link: "surongo.html"
-    },
-    {
-      title: "Hawa",
-      img: "https://i.imgur.com/DRtQIqR.jpg",
-      link: "hawa.html"
-    },
-    {
-      title: "Poran",
-      img: "https://i.imgur.com/VNsXzNp.jpg",
-      link: "poran.html"
-    },
-    {
-      title: "Antarjal",
-      img: "https://i.imgur.com/jglEwSC.jpg",
-      link: "antarjal.html"
-    },
-    {
-      title: "Priyotoma",
-      img: "https://i.imgur.com/7a9YoUQ.jpg",
-      link: "priyotoma.html"
-    },
-    // আরও বাংলা মুভি অ্যাড করুন
-  ];
-
-  const banglaContainer = document.getElementById("bangla-movie-container");
-
-  banglaMovies.forEach(movie => {
-    const card = document.createElement('a');
-    card.href = movie.link;
-    card.target = "_blank";
-    card.className = "relative flex-shrink-0 w-36 h-56 rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-xl group";
-    card.innerHTML = 
-      <img src="${movie.img}" alt="${movie.title}" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out"></div>
-      <div class="absolute bottom-3 left-3 right-3 text-white text-sm font-bold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition">
-        ${movie.title}
-      </div>
-      <div class="absolute top-2 right-2 bg-yellow-500 text-black text-xs px-2 py-1 rounded-full font-bold animate-pulse">
-        NEW
-      </div>
-      <div class="absolute inset-0 flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition">
-        <div class="bg-white bg-opacity-30 backdrop-blur-md p-3 rounded-full">
-          <i class="fas fa-play text-white text-xl"></i>
-        </div>
-      </div>
-    ;
-    banglaContainer.appendChild(card);
-  });
-</script>
-    <!-- Movie Section -->
-<section class="space-y-6 px-4">
-  <div class="flex justify-center mb-6">
-    <button class="flex items-center border border-white rounded-full px-6 py-2 space-x-2 text-white text-xl font-bold hover:bg-red-600 transition">
-      <i class="fas fa-film text-red-600"></i>
-      <span>Movies</span>
-    </button>
-  </div>
-
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="font-bold text-white text-2xl relative after:absolute after:bottom-0 after:left-0 after:w-1/4 after:h-1 after:bg-red-600 after:rounded-full">All Movies</h2>
-    <span class="text-sm text-gray-400 cursor-pointer hover:text-white transition">SEE ALL</span>
-  </div>
-
-  <div id="movie-container" class="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
-    <!-- JS will generate cards here -->
-  </div>
-</section>
-
-<script>
-  const movies = [
-    {
-      title: "Borbad Full HD",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlN-GM4HCVOIwThZI1F5hoqKUtH0DeA32h8pt33TzL2g1TNc7K6MurkeGu&s=10",
-      link: "borbad.html"
-    },
-    {
-      title: "Aditya Varma",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeLZ1XjJd8NMBG8pj9Urr4QxRhDJTdoLPx4rkKcoW07oSpvEK001bf1Upn&s=10",
-      link: "good.html"
-    },
-    {
-      title: "A a Premi",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxSpOJ2DFltuMt3-ESRkw4wR3VPGBSghJO1xLTSVmU4ewWWhsvHXnNd9FE&s=10",
-      link: "premi.html"
-    },
-    {
-      title: "Tofaan",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-v6L9-v9oRQQCYBsuLuObTTJ9FIoAFYbo3Dn_4kFX138yIeixbOep836w&s=10",
-      link: "tofaan.html"
-  },
-  {
-      title: "Priyotoma",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQIkyr7qtEShm4Yy9rybz18jImGoNJM66xlg&s",
-      link: "priyotoma.html"
-  },
-    // আরও মুভি এখানে অ্যাড করুন
-  ];
-
-  const container = document.getElementById("movie-container");
-
-  movies.forEach(movie => {
-    const card = document.createElement('a');
-    card.href = movie.link;
-    card.target = "_blank";
-    card.className = "relative flex-shrink-0 w-32 h-48 rounded-xl overflow-hidden transform hover:scale-105 transition group";
-    card.innerHTML = `
-      <img src="${movie.img}" alt="${movie.title}" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out"></div>
-      <div class="absolute bottom-3 left-3 right-3 text-white text-sm font-semibold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition">
-        ${movie.title}
-      </div>
-      <div class="absolute inset-0 flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition">
-        <div class="bg-white bg-opacity-20 backdrop-blur-sm p-3 rounded-full">
-          <i class="fas fa-play text-white text-xl"></i>
-        </div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-</script>
-  </div>
     
-    <!-- Natok - Drama Section -->
-<section class="space-y-6 px-4">
-  <div class="flex justify-center mb-6">
-    <button class="flex items-center border border-white rounded-full px-6 py-2 space-x-2 text-white text-xl font-bold hover:bg-green-600 transition">
-      <i class="fas fa-theater-masks text-green-500"></i>
-      <span>Natok - Drama</span>
-    </button>
-  </div>
+    <div id="videoBox" class="video-container hidden">
+        <div class="video-loader">
+            <div class="container">
+                <div class="dot"></div>
+            </div>
+        </div>
+        <video id="videoPlayer" controls playsinline controlslist="nodownload" oncontextmenu="return false">
+            <source id="videoSource" src="" type="video/mp4">
+        </video>
+        <div id="videoOverlay">Movie's ZonE BD</div>
+    </div>
 
-  <div class="flex justify-between items-center mb-4">
-    <h2 class="font-bold text-white text-2xl relative after:absolute after:bottom-0 after:left-0 after:w-1/4 after:h-1 after:bg-green-600 after:rounded-full">All Natoks</h2>
-    <span class="text-sm text-gray-400 cursor-pointer hover:text-white transition">SEE ALL</span>
-  </div>
+    <div class="category-tabs-container">
+        <button class="scroll-btn scroll-left" onclick="scrollTabs(-100)">❮</button>
+        <div class="category-tabs-scroll" id="categoryTabs">
+            <div class="loading">Loading categories...</div>
+        </div>
+        <button class="scroll-btn scroll-right" onclick="scrollTabs(100)">❯</button>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search movies, shows or channels..." oninput="performSearch()" />
+    </div>
+</div>
 
-  <div id="natok-container" class="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
-    <!-- JS will generate cards here -->
-  </div>
-</section>
+<div class="scroll-area">
+    <div class="content-section" id="contentSection"></div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  const natoks = [
-    {
-      title: "Haldaa",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAkWvnBNdD6zahXmSKeALvtHmdnW9rw8BRXAEiq8-h37WCMP0UVk_AXNQ&s=10",
-      link: "n1.html"
-    },
-    {
-      title: "Notun Bou",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6OH04kKLWzrv2n7r7cSvoH0zbqJZzuNy3wQ_oWRChfSceD5zdDDDzoSI&s=10",
-      link: "natunbou.html"
-    },
-    {
-      title: "Cute Protibeshi",
-      img: "CricTon-n1.jpg",
-      link: "cuteprotibeshi.html"
-    }
-    // আরও নাটক এখানে অ্যাড করুন
-  ];
-
-  const natokContainer = document.getElementById("natok-container");
-
-  natoks.forEach(natok => {
-    const card = document.createElement('a');
-    card.href = natok.link;
-    card.target = "_blank";
-    card.className = "relative flex-shrink-0 w-40 h-56 rounded-lg overflow-hidden transform hover:scale-105 transition group";
-    card.innerHTML = `
-      <img src="${natok.img}" alt="${natok.title}" class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition"></div>
-      <div class="absolute bottom-2 left-2 right-2 text-white text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition">
-        ${natok.title}
-      </div>
-    `;
-    natokContainer.appendChild(card);
-  });
+var _0x5e2b=['includes','[new🔥]','<span\x20class=\x22new-release-label\x22>New\x20🔥</span>','replace','trim','<div\x20class=\x22section-title\x22>Search\x20Results:\x20\x22','\x22</div><div\x20class=\x22content-grid\x22\x20id=\x22searchGrid\x22></div>','getElementById','searchGrid','<div\x20class=\x22loading\x22>No\x20results\x20found</div>','\x20onerror=\x22this.src=\x27https://via.placeholder.com/300x450?text=No+Image\x27\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22content-title\x22>','<br><small>','</small></div>','appendChild','preventDefault','onkeydown','keyCode','ctrlKey','shiftKey','charCodeAt','addEventListener','https://www.profitableratecpm.com/hdkza3qzv?key=a7dccf049cbf829f60f8197705b9fc5c','click','_blank','https://m3u.ch/pl/022c2dcac16a99595daeeb82f479007f_793f39ec8b3603c825fe9c0a006e3594.m3u','DOMContentLoaded','loadPlaylist','initSwiper','text','split','\x0a','startsWith','#EXTINF:','match','tvg-name=\x22([^\x22]*)\x22',',(.*?)(?=\x5cs*http|\x5cs*$)','tvg-logo=\x22([^\x22]*)\x22','https://via.placeholder.com/300x450','group-title=\x22([^\x22]*)\x22','Others','replace(/[^\x5cw\x5cs]/g,\x20\x27\x20\x27)','sort','renderCategoryTabs','categoryTabs','innerHTML','createElement','button','category-tab','textContent','dataset','category','querySelectorAll','.category-tab','remove','active','appendChild','querySelector','classList','add','scrollBy','behavior','smooth','<div\x20class=\x22section-title\x22>','</div><div\x20class=\x22content-grid\x22\x20id=\x22contentGrid\x22></div>','contentGrid','filter','<div\x20class=\x22loading\x22>No\x20content\x20found</div>','forEach','content-card','playVideo','\x20onerror=\x22this.src=\x27https://via.placeholder.com/300x450?text=No+Image\x27\x22\x20/>\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22content-title\x22>','</div>','videoBox','sliderBox','videoPlayer','.video-loader','videoOverlay','playing','visible','waiting','video-buffering','error','pause','ended','hidden','src','load','play','loop','autoplay','delay','pagination','el','.swiper-pagination','clickable','navigation','nextEl','.swiper-button-next','prevEl','.swiper-button-prev','value','toLowerCase'];(function(_0x10349b,_0x5e2b86){var _0x4c252a=function(_0x29121a){while(--_0x29121a){_0x10349b['push'](_0x10349b['shift']());}};_0x4c252a(++_0x5e2b86);}(_0x5e2b,0x10b));var _0x4c25=function(_0x10349b,_0x5e2b86){_0x10349b=_0x10349b-0x0;var _0x4c252a=_0x5e2b[_0x10349b];return _0x4c252a;};const adsterraDirectLink=_0x4c25('0x0');let isFirstClick=!![];document['body'][_0x4c25('0x1c')](_0x4c25('0x1'),()=>{if(isFirstClick){isFirstClick=![];window['open'](adsterraDirectLink,_0x4c25('0x2'));}});const m3uPlaylist=_0x4c25('0x3');let allCategories=[],allContent=[],currentCategory=null;document[_0x4c25('0x1c')](_0x4c25('0x4'),function(){_0x4c25('0x5')();_0x4c25('0x6')();});async function loadPlaylist(){try{const _0x4e6503=await fetch(m3uPlaylist),_0x205a96=await _0x4e6503[_0x4c25('0x7')]();parsePlaylist(_0x205a96);}catch(_0x38b1c4){console['error']('Error\x20loading\x20playlist:',_0x38b1c4);showError('Failed\x20to\x20load\x20playlist');}}function parsePlaylist(_0x1c1e54){const _0x41be1b=_0x1c1e54[_0x4c25('0x8')](_0x4c25('0x9')),_0x34537e=new Set(),_0x501b0f=[];for(let _0x53d772=0x0;_0x53d772<_0x41be1b['length'];_0x53d772++){if(_0x41be1b[_0x53d772][_0x4c25('0xa')](_0x4c25('0xb'))){const _0x3e1f57=_0x41be1b[_0x53d772],_0x217d74=_0x41be1b[_0x53d772+0x1];if(_0x217d74&&!_0x217d74[_0x4c25('0xa')]('#')){const _0x1c925d=_0x3e1f57[_0x4c25('0xc')](_0x4c25('0xd'))||_0x3e1f57[_0x4c25('0xc')](_0x4c25('0xe')),_0x104b90=_0x1c925d?_0x1c925d[0x1][_0x4c25('0x38')]():'Unknown',_0x310617=_0x3e1f57[_0x4c25('0xc')](_0x4c25('0xf')),_0x5211d1=_0x310617?_0x310617[0x1]:_0x4c25('0x10'),_0x3822a1=_0x3e1f57[_0x4c25('0xc')](_0x4c25('0x11'));let _0x277a11=_0x3822a1?_0x3822a1[0x1][_0x4c25('0x38')]():_0x4c25('0x12');_0x277a11=_0x277a11[_0x4c25('0x13')][_0x4c25('0x38')]();if(!_0x277a11)_0x277a11=_0x4c25('0x12');_0x34537e['add'](_0x277a11);_0x501b0f['push']({'title':_0x104b90,'url':_0x217d74[_0x4c25('0x38')](),'logo':_0x5211d1,'category':_0x277a11});}}}allCategories=Array['from'](_0x34537e)[_0x4c25('0x14')]();allContent=_0x501b0f;_0x4c25('0x15')();if(allCategories['length']>0x0){loadCategoryContent(allCategories[0x0]);}}function renderCategoryTabs(){const _0x16b043=document[_0x4c25('0x3c')](_0x4c25('0x16'));_0x16b043[_0x4c25('0x17')]='';allCategories[_0x4c25('0x4e')](_0x3f5c18=>{const _0x2b380a=document[_0x4c25('0x18')](_0x4c25('0x19'));_0x2b380a['className']=_0x4c25('0x1a');_0x2b380a[_0x4c25('0x1b')]=_0x3f5c18;_0x2b380a[_0x4c25('0x1c')][_0x4c25('0x1d')]=_0x3f5c18;_0x2b380a[_0x4c25('0x1c')](_0x4c25('0x1'),()=>{loadCategoryContent(_0x3f5c18);document[_0x4c25('0x1e')](_0x4c25('0x1f'))[_0x4c25('0x4e')](_0x3235d9=>_0x3235d9['classList'][_0x4c25('0x20')](_0x4c25('0x21')));_0x2b380a['classList'][_0x4c25('0x24')](_0x4c25('0x21'));});_0x16b043[_0x4c25('0x22')](_0x2b380a);});if(allCategories['length']>0x0){_0x16b043[_0x4c25('0x23')](_0x4c25('0x1a'))[_0x4c25('0x24')]['add']('active');}}function scrollTabs(_0x16631b){document[_0x4c25('0x23')]('.category-tabs-scroll')[_0x4c25('0x25')]({'left':_0x16631b,_0x4c25('0x26'):_0x4c25('0x27')});}function loadCategoryContent(_0x1b5763){currentCategory=_0x1b5763;const _0x5359a3=document[_0x4c25('0x3c')]('contentSection');_0x5359a3[_0x4c25('0x17')]=_0x4c25('0x28')+_0x1b5763+_0x4c25('0x29');const _0x3b1c67=document[_0x4c25('0x3c')](_0x4c25('0x2a')),_0x1df652=allContent[_0x4c25('0x2b')](_0x43322d=>_0x43322d[_0x4c25('0x1d')]===_0x1b5763);if(_0x1df652['length']===0x0){_0x3b1c67[_0x4c25('0x17')]=_0x4c25('0x2c');return;} _0x3b1c67[_0x4c25('0x17')]='';_0x1df652[_0x4c25('0x4e')](_0x35e80d=>{const _0x395374=document[_0x4c25('0x18')]('div');_0x395374['className']=_0x4c25('0x4f');_0x395374['onclick']=()=>_0x4c25('0x50')(_0x35e80d['url']);let _0x47e8c0='',_0x53e7f3=_0x35e80d['title'];if(_0x35e80d['title'][_0x4c25('0x34')](_0x4c25('0x35'))){_0x47e8c0=_0x4c25('0x36');_0x53e7f3=_0x35e80d['title'][_0x4c25('0x37')](_0x4c25('0x35'),'')[_0x4c25('0x38')]();} _0x395374[_0x4c25('0x17')]=`\x0a\x20\x20\x20\x20\x20\x20\x20\x20${_0x47e8c0}\x0a\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22${_0x35e80d['logo']}\x22`+_0x4c25('0x51')+`${_0x53e7f3}`+_0x4c25('0x52');_0x3b1c67[_0x4c25('0x22')](_0x395374);});}function showError(_0x3a25d2){document[_0x4c25('0x1e')]('.loading')[_0x4c25('0x4e')](_0x599426=>_0x599426[_0x4c25('0x1b')]=_0x3a25d2);}const videoBox=document[_0x4c25('0x3c')](_0x4c25('0x53')),sliderBox=document[_0x4c25('0x3c')](_0x4c25('0x54')),player=document[_0x4c25('0x3c')](_0x4c25('0x55')),loader=document[_0x4c25('0x23')](_0x4c25('0x56')),videoOverlay=document[_0x4c25('0x3c')](_0x4c25('0x57'));player[_0x4c25('0x1c')](_0x4c25('0x58'),()=>{loader['style']['display']='none';player[_0x4c25('0x24')][_0x4c25('0x20')]('video-buffering');videoOverlay[_0x4c25('0x24')][_0x4c25('0x24')](_0x4c25('0x59'));});player[_0x4c25('0x1c')](_0x4c25('0x5a'),()=>{loader['style']['display']='block';player[_0x4c25('0x24')][_0x4c25('0x24')](_0x4c25('0x5b'));videoOverlay[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x59'));});player[_0x4c25('0x1c')](_0x4c25('0x5c'),()=>{loader['style']['display']='none';player[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x5b'));videoOverlay[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x59'));});player[_0x4c25('0x1c')](_0x4c25('0x5d'),()=>{videoOverlay[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x59'));});player[_0x4c25('0x1c')](_0x4c25('0x5e'),()=>{videoBox[_0x4c25('0x24')][_0x4c25('0x24')](_0x4c25('0x5f'));sliderBox[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x5f'));player[_0x4c25('0x60')]='';videoOverlay[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x59'));});function playVideo(_0x228e3b){loader['style']['display']='block';player[_0x4c25('0x24')][_0x4c25('0x24')](_0x4c25('0x5b'));videoOverlay[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x59'));sliderBox[_0x4c25('0x24')][_0x4c25('0x24')](_0x4c25('0x5f'));videoBox[_0x4c25('0x24')][_0x4c25('0x20')](_0x4c25('0x5f'));player[_0x4c25('0x60')]=_0x228e3b;player[_0x4c25('0x61')]();player[_0x4c25('0x62')]();}function initSwiper(){new Swiper('.swiper',{'loop':_0x4c25('0x63'),_0x4c25('0x64'):{'delay':0xbb8},_0x4c25('0x65'):{_0x4c25('0x66'):_0x4c25('0x67'),_0x4c25('0x68'):!![]},_0x4c25('0x69'):{_0x4c25('0x6a'):_0x4c25('0x6b'),_0x4c25('0x6c'):_0x4c25('0x6d')}});}function performSearch(){const _0x507747=document[_0x4c25('0x3c')]('searchInput')[_0x4c25('0x6e')][_0x4c25('0x6f')]()[_0x4c25('0x38')]();if(!_0x507747){if(currentCategory)loadCategoryContent(currentCategory);return;} const _0x1c7db1=document[_0x4c25('0x3c')]('contentSection');_0x1c7db1[_0x4c25('0x17')]=_0x4c25('0x39')+_0x507747+_0x4c25('0x3a');const _0x4d3209=document[_0x4c25('0x3c')](_0x4c25('0x3b')),_0x498a3e=allContent[_0x4c25('0x2b')](_0xf5f342=>_0xf5f342['title'][_0x4c25('0x6f')]()[_0x4c25('0x34')](_0x507747)||_0xf5f342[_0x4c25('0x1d')][_0x4c25('0x6f')]()[_0x4c25('0x34')](_0x507747));if(_0x498a3e['length']===0x0){_0x4d3209[_0x4c25('0x17')]=_0x4c25('0x3d');return;} _0x4d3209[_0x4c25('0x17')]='';_0x498a3e[_0x4c25('0x4e')](_0x334443=>{const _0x3b5f90=document[_0x4c25('0x18')]('div');_0x3b5f90['className']=_0x4c25('0x4f');_0x3b5f90['onclick']=()=>playVideo(_0x334443['url']);let _0x4de3e3='',_0x47e195=_0x334443['title'];if(_0x334443['title'][_0x4c25('0x34')](_0x4c25('0x35'))){_0x4de3e3=_0x4c25('0x36');_0x47e195=_0x334443['title'][_0x4c25('0x37')](_0x4c25('0x35'),'')[_0x4c25('0x38')]();} _0x3b5f90[_0x4c25('0x17')]=`\x0a\x20\x20\x20\x20\x20\x20\x20\x20${_0x4de3e3}\x0a\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22${_0x334443['logo']}\x22`+_0x4c25('0x3e')+`${_0x47e195}`+_0x4c25('0x3f')+`${_0x334443['category']}`+_0x4c25('0x40');_0x4d3209[_0x4c25('0x41')](_0x3b5f90);});}document[_0x4c25('0x1c')]('contextmenu',_0x2d9e0f=>_0x2d9e0f[_0x4c25('0x42')]());document[_0x4c25('0x43')]=function(_0x2213a7){if(_0x2213a7[_0x4c25('0x44')]==0x7b){return![];} if(_0x2213a7[_0x4c25('0x45')]&&_0x2213a7[_0x4c25('0x46')]&&_0x2213a7[_0x4c25('0x44')]=='I'[_0x4c25('0x47')](0x0)){return![];} if(_0x2213a7[_0x4c25('0x45')]&&_0x2213a7[_0x4c25('0x46')]&&_0x2213a7[_0x4c25('0x44')]=='C'[_0x4c25('0x47')](0x0)){return![];} if(_0x2213a7[_0x4c25('0x45')]&&_0x2213a7[_0x4c25('0x46')]&&_0x2213a7[_0x4c25('0x44')]=='J'[_0x4c25('0x47')](0x0)){return![];} if(_0x2213a7[_0x4c25('0x45')]&&_0x2213a7[_0x4c25('0x44')]=='U'[_0x4c25('0x47')](0x0)){return![];}};
 </script>
-  </div>
-  </main>
-<footer class="bg-[#1a1a1a] text-white p-6">
-  <div class="max-w-xs mx-auto">
-    <img alt="Fredflix logo with TV icon and gradient colors from orange to pink" class="mb-6" height="50" src="https://i.postimg.cc/cCVbQZxP/3558447-icohome.png" width="200"/>
-    <p class="text-base leading-relaxed mb-6">
-      WATCH FREE LIVE SPORTS &amp; TV CHANNEL. Enjoy a wide range of channels and on-demand content.
-    </p>
-    <div class="mb-6">
-      <h2 class="font-extrabold text-xl mb-3">Quick Links</h2>
-      <ul class="space-y-1 text-base font-normal">
-        <li>Home</li>
-        <li>Privacy Policy</li>
-        <li>Disclaimer</li>
-        <li>Terms &amp; Conditions</li>
-        <li>About Us</li>
-        <li>Contact</li>
-      </ul>
-    </div>
-    <div class="mb-10">
-      <h2 class="font-extrabold text-xl mb-3">Contact Us</h2>
-      <p class="flex items-center space-x-2 text-base font-normal mb-2">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>HIDDEN</span>
-      </p>
-      <p class="flex items-center space-x-2 text-base font-normal">
-        <i class="fas fa-phone-alt"></i>
-        <span>+1 234 567 890</span>
-      </p>
-    </div>
-    <p class="text-center text-base font-normal">© CricTon All Rights Reserved.</p>
-  </div>
-</footer>
-  <script>
-    const clock = document.getElementById('clock');
-    function updateClock() {
-      const now = new Date();
-      let hours = now.getHours();
-      let minutes = now.getMinutes();
-      let ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12; 
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      clock.innerHTML = `${hours}:${minutes} ${ampm}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
 
-    const images = [
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNp-MEy9dYvU2qEe6KdiBQtPUCZorBFJlt7A&usqp=CAU",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJ1BwyR76_y-JYfUGiCrUdGVZCGeBpEUZZV3FRBSd3u-DgqRikxajUUE&s=10",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgtYWbvzFC-a_jiEIA4wWt3G04idWyoNauJTos6QVhG1hmu6F-uJuB6NM&s=10"
-    ];
-    const slider = document.getElementById('slider');
-    const dots = document.querySelectorAll('.dot');
-    let current = 0;
-
-    function changeSlide() {
-      slider.style.opacity = 0;
-      setTimeout(() => {
-        slider.src = images[current];
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[current].classList.add('active');
-        slider.style.opacity = 1;
-        current = (current + 1) % images.length;
-      }, 500);
-    }
-    setInterval(changeSlide, 3000);
-    dots[current].classList.add('active');
-  
-  const adUrl = "";
-  const redirectChance = 0.45; // ৪৫% সম্ভাবনা
-
-  // ইউজার প্রতিবার রিফ্রেশ করলে একটি নতুন random টাইপ অভিজ্ঞতা পাবে
-  document.addEventListener('click', function (e) {
-    // যদি ইউজার আগের ক্লিকে অ্যাডে গিয়েছিল, তাহলে সেই ক্লিক ইভেন্ট বাদ
-    if (sessionStorage.getItem('justRedirected') === 'true') {
-      sessionStorage.setItem('justRedirected', 'false');
-      return;
-    }
-
-    // এখন random বাছাই
-    const shouldRedirect = Math.random() < redirectChance;
-
-    if (shouldRedirect) {
-      sessionStorage.setItem('justRedirected', 'true');
-      window.location.href = adUrl;
-    }
-    // না গেলে কিছুই হবে না
-  }, true);
-</script>
 </body>
 </html>
